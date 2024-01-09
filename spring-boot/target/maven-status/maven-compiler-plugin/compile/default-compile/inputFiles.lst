@@ -1,0 +1,16 @@
+E:\SPRING\spring-boot\src\main\java\com\laptrinh\service\impl\NewService.java
+E:\SPRING\spring-boot\src\main\java\com\laptrinh\dto\NewDTO.java
+E:\SPRING\spring-boot\src\main\java\com\laptrinh\config\JpaAuditingConfig.java
+E:\SPRING\spring-boot\src\main\java\com\laptrinh\repository\CategoryRepository.java
+E:\SPRING\spring-boot\src\main\java\com\laptrinh\repository\NewRepository.java
+E:\SPRING\spring-boot\src\main\java\com\laptrinh\dto\AbtractDTO.java
+E:\SPRING\spring-boot\src\main\java\com\laptrinh\entity\BaseEntity.java
+E:\SPRING\spring-boot\src\main\java\com\laptrinh\Application.java
+E:\SPRING\spring-boot\src\main\java\com\laptrinh\api\NewApi.java
+E:\SPRING\spring-boot\src\main\java\com\laptrinh\entity\NewEntity.java
+E:\SPRING\spring-boot\src\main\java\com\laptrinh\convert\NewConvert.java
+E:\SPRING\spring-boot\src\main\java\com\laptrinh\web\NewController.java
+E:\SPRING\spring-boot\src\main\java\com\laptrinh\entity\RoleEntity.java
+E:\SPRING\spring-boot\src\main\java\com\laptrinh\entity\CategoryEntity.java
+E:\SPRING\spring-boot\src\main\java\com\laptrinh\entity\UserEntity.java
+E:\SPRING\spring-boot\src\main\java\com\laptrinh\service\INewService.java

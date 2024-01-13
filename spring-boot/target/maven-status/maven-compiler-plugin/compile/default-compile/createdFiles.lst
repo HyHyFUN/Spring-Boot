@@ -1,5 +1,6 @@
 com\laptrinh\entity\NewEntity.class
 com\laptrinh\web\NewController.class
+com\laptrinh\convert\CategoryConvert.class
 com\laptrinh\entity\BaseEntity.class
 com\laptrinh\dto\AbtractDTO.class
 com\laptrinh\entity\UserEntity.class
@@ -12,6 +13,7 @@ com\laptrinh\service\impl\NewService.class
 com\laptrinh\Application.class
 com\laptrinh\config\JpaAuditingConfig$AuditorAwareImpl.class
 com\laptrinh\entity\RoleEntity.class
+com\laptrinh\dto\CategoryDTO.class
 com\laptrinh\convert\NewConvert.class
 com\laptrinh\repository\CategoryRepository.class
 com\laptrinh\service\INewService.class

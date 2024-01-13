@@ -119,8 +119,10 @@
 											'input, select');
 									input.each(function() {
 										if (!$(this).val()) {
-											$(this).addClass("error");
-											empty = true;
+											if ($(this).attr('name') != 'id') {
+												$(this).addClass("error");
+												empty = true;
+											}
 										} else {
 											$(this).removeClass("error");
 										}
@@ -140,12 +142,12 @@
 											}
 											count++;
 										});
-										var tiltle = input[0].value;
-										var content = input[1].value;
-										var shortDescription = input[2].value;
-										var thumbnail = input[3].value;
-										var categoryCode = input[4].value;
-										var id = input[5].value;
+										var tiltle = input[1].value;
+										var content = input[2].value;
+										var shortDescription = input[3].value;
+										var thumbnail = input[4].value;
+										var categoryCode = input[5].value;
+										var id = input[0].value;
 										var datas = {
 										        'tiltle' : tiltle,
 										        'content' : content,
@@ -164,6 +166,7 @@
 										    contentType: "application/json;charset=utf-8",
 										    success : function(data) {              
 										        alert('OK');
+										        input[0].value = data.id;
 										    },
 										    error : function(request,error)
 										    {
@@ -181,14 +184,54 @@
 								"click",
 								".edit",
 								function() {
+									var count = 0;
 									$(this).parents("tr").find(
 											"td:not(:last-child)").each(
 											function() {
-												$(this).html(
-														'<input type="text" class="form-control" value="'
-																+ $(this)
-																		.text()
-																+ '"/>');
+												var name = '';
+												var id = '';
+												switch(count) {
+												  case 0:
+												    break;
+												  case 1:
+													name = 'tiltle';
+													id = 'tiltle';
+													$(this).html(
+															'<input type="text" class="form-control" value="'
+																	+ $(this)
+																			.text()
+																	+ '" name="'+name+'" id="'+id+'"/>');
+												    break;
+												  case 2:
+												  	name = 'content';
+													id = 'content';
+													$(this).html(
+															'<input type="text" class="form-control" value="'
+																	+ $(this)
+																			.text()
+																	+ '" name="'+name+'" id="'+id+'"/>');
+												    break;
+												  case 3:
+												  	name = 'shortDescription';
+													id = 'shortDescription';
+													$(this).html(
+															'<input type="text" class="form-control" value="'
+																	+ $(this)
+																			.text()
+																	+ '" name="'+name+'" id="'+id+'"/>');
+												    break;
+												  case 4:
+												  	name = 'thumbnail';
+													id = 'thumbnail';
+													$(this).html(
+															'<input type="text" class="form-control" value="'
+																	+ $(this)
+																			.text()
+																	+ '" name="'+name+'" id="'+id+'"/>');
+												    break;
+												  default:
+												}
+												count++;
 											});
 									$(this).parents("tr").find(".add, .edit")
 											.toggle();
@@ -196,6 +239,30 @@
 								});
 						// Delete row on delete button click
 						$(document).on("click", ".delete", function() {
+							var input = $(this).parents("tr").find(
+							'input');
+							if (input.val() != '') {
+								var datas = {
+								        'id' : input.val()
+								    };
+								$.ajax({
+
+								    url : '/new/delete',
+								    type : 'POST',
+								    data : JSON.stringify(datas),
+								    dataType:'json',
+								    contentType: "application/json;charset=utf-8",
+								    success : function(data) {              
+								        alert('OK');
+								    },
+								    error : function(request,error)
+								    {
+								        alert("Request: "+JSON.stringify(request));
+								        return;
+								    }
+								});
+							}
+							
 							$(this).parents("tr").remove();
 							$(".add-new").removeAttr("disabled");
 						});

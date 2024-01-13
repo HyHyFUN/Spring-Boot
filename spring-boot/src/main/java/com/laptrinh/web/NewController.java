@@ -29,5 +29,11 @@ public class NewController {
 	public NewDTO createNew(@RequestBody NewDTO newDTO) {
 		return newService.save(newDTO);
 	}
+	
+	@PostMapping(value = "/new/delete")
+	@ResponseBody
+	public NewDTO deleteNew(@RequestBody NewDTO newDTO) {
+		return newService.deleteNew(newDTO.getId());
+	}
 
 }

@@ -12,6 +12,7 @@ import com.laptrinh.dto.NewDTO;
 import com.laptrinh.service.INewService;
 
 @Controller
+@RequestMapping("news")
 public class NewController {
 	
 	@Autowired
@@ -21,7 +22,7 @@ public class NewController {
 	public String viewHomePage(Model model) {
 		model.addAttribute("listNews", newService.getListAll());
 		model.addAttribute("listCategory", newService.getListAllCategory());
-		return "index";
+		return "home-news";
 	}
 	
 	@PostMapping(value = "/new")

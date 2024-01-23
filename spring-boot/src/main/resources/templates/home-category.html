@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<title>Welcome</title>
+<title>Welcome News</title>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans" />
 <link rel="stylesheet"
@@ -24,9 +24,43 @@
 </head>
 <body>
 	<div class="container-lg">
-		<a href="/news/">News Page</a>
-		<br/>
-		<a href="/category/">Category Page</a>
+		<div class="table-responsive">
+			<div class="table-wrapper">
+				<div class="table-title">
+					<div class="row">
+						<div class="col-sm-8">
+							<h2>
+								Category <b>Details</b>
+							</h2>
+						</div>
+						<div class="col-sm-4">
+							<a href="/category/new">Create New Category</a>
+						</div>
+					</div>
+				</div>
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Category ID</th>
+							<th>Code</th>
+							<th>Name</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="category : ${listCategory}">
+							<td th:text="${category.id}">id</td>
+							<td th:text="${category.code}">code</td>
+							<td th:text="${category.name}">name</td>
+							<td>
+								<a th:href="@{'/category/edit/' + ${category.id}}">EDIT</a>
+								&nbsp;&nbsp;&nbsp;
+								<a th:href="@{'/category/delete/' + ${category.id}}">DELETE</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<title>Welcome</title>
+<title>Create Update</title>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans" />
 <link rel="stylesheet"
@@ -24,9 +24,40 @@
 </head>
 <body>
 	<div class="container-lg">
-		<a href="/news/">News Page</a>
-		<br/>
-		<a href="/category/">Category Page</a>
+		<div class="table-responsive">
+			<div class="table-wrapper">
+				<div class="table-title">
+					<div class="row">
+						<div class="col-sm-8">
+							<h2>
+								Category <b>Update</b>
+							</h2>
+						</div>
+					</div>
+				</div>
+				<form th:action="@{/category/save}" th:object="${category}"
+					method="post">
+					<table class="table table-bordered">
+						<tr>
+							<td>Category ID:</td>
+							<td><input type="text" th:field="*{id}" readonly="readonly" />
+							</td>
+						</tr>
+						<tr>
+							<td>Category Code:</td>
+							<td><input type="text" th:field="*{code}" /></td>
+						</tr>
+						<tr>
+							<td>Category Name:</td>
+							<td><input type="text" th:field="*{name}" /></td>
+						</tr>
+						<tr>
+							<td colspan="2"><button type="submit">Save</button></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

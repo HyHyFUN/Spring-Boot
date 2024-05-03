@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `jspservletjdbc` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `jspservletjdbc`;
+CREATE DATABASE  IF NOT EXISTS `newspringboot` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `newspringboot`;
 -- MySQL dump 10.13  Distrib 8.0.13, for Win64 (x86_64)
 --
--- Host: localhost    Database: jspservletjdbc
+-- Host: localhost    Database: newspringboot
 -- ------------------------------------------------------
 -- Server version	8.0.13
 

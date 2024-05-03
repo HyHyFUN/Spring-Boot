@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: spring-boot
 Implementation-Version: 1.0
-Built-By: Mien Trung CPT
+Built-By: HuyTN13
 Implementation-Vendor-Id: com.laptrinh
-Build-Jdk: 1.8.0_191
+Build-Jdk: 1.8.0_202
 Implementation-URL: https://projects.spring.io/spring-boot/spring-boot
  /
 Created-By: Maven Integration for Eclipse

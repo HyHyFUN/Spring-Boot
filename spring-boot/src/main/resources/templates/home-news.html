@@ -58,7 +58,7 @@
 							<td th:text="${news.content}"></td>
 							<td th:text="${news.shortDescription}"></td>
 							<td th:text="${news.thumbnail}"></td>
-							<td><select name="categorys" id="categorys">
+							<td><select name="categorys" id="categorys" disabled="disabled">
 									<option th:each="category:${listCategory}"
 										th:text="${category.name}" th:value="${category.code}"
 										th:selected="${category.code==news.categoryCode}"></option>
@@ -83,6 +83,11 @@
 						$('[data-toggle="tooltip"]').tooltip();
 						var actions = $("table td:last-child").html();
 						// Append table with add row form on add new button click
+						var tiltleMae = '';
+						var contentMae = '';
+						var shortDescriptionMae = '';
+						var thumbnailMae = '';
+						var categoryCodeMae = '';
 						$(".add-new")
 								.click(
 										function() {
@@ -92,6 +97,11 @@
 											var index = $(
 													"table tbody tr:last-child")
 													.index();
+											if (index == -1) {
+												actions = '<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">A</i></a>'
+														+ '<a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">E</i></a>'
+														+ '<a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">D</i></a>';
+											}
 											var row = '<tr>'
 													+ '<td class="d-none"><input type="hidden" name="id" id="id" value=""/></td>'
 													+ '<td><input type="text" class="form-control" name="tiltle" id="tiltle"/></td>'
@@ -148,6 +158,8 @@
 										var thumbnail = input[4].value;
 										var categoryCode = input[5].value;
 										var id = input[0].value;
+										var textBefore = tiltleMae + contentMae + shortDescriptionMae + thumbnailMae + categoryCodeMae;
+										var textAfter = tiltle + content + shortDescription + thumbnail + categoryCode;
 										var datas = {
 										        'tiltle' : tiltle,
 										        'content' : content,
@@ -157,25 +169,29 @@
 										        'id' : id
 										    };
 										
-										$.ajax({
+										if (textBefore != textAfter) {
+											$.ajax({
 
-										    url : '/news/new',
-										    type : 'POST',
-										    data : JSON.stringify(datas),
-										    dataType:'json',
-										    contentType: "application/json;charset=utf-8",
-										    success : function(data) {              
-										        alert('OK');
-										        input[0].value = data.id;
-										    },
-										    error : function(request,error)
-										    {
-										        alert("Request: "+JSON.stringify(request));
-										        return;
-										    }
-										});
+											    url : '/news/new',
+											    type : 'POST',
+											    data : JSON.stringify(datas),
+											    dataType:'json',
+											    contentType: "application/json;charset=utf-8",
+											    success : function(data) {              
+											        alert('OK');
+											        input[0].value = data.id;
+											    },
+											    error : function(request,error)
+											    {
+											        alert("Request: "+JSON.stringify(request));
+											        return;
+											    }
+											});
+										}
+										
 										$(this).parents("tr").find(
 												".add, .edit").toggle();
+										$(this).parents("tr").find("select").attr("disabled","disabled");
 										$(".add-new").removeAttr("disabled");
 									}
 								});
@@ -190,45 +206,54 @@
 											function() {
 												var name = '';
 												var id = '';
+												var value = '';
 												switch(count) {
 												  case 0:
 												    break;
 												  case 1:
 													name = 'tiltle';
 													id = 'tiltle';
+													value = $(this).text();
 													$(this).html(
 															'<input type="text" class="form-control" value="'
-																	+ $(this)
-																			.text()
+																	+ value
 																	+ '" name="'+name+'" id="'+id+'"/>');
+													tiltleMae = value;
 												    break;
 												  case 2:
 												  	name = 'content';
 													id = 'content';
+													value = $(this).text();
 													$(this).html(
 															'<input type="text" class="form-control" value="'
-																	+ $(this)
-																			.text()
+																	+ value
 																	+ '" name="'+name+'" id="'+id+'"/>');
-												    break;
+													contentMae = value;
+													break;
 												  case 3:
 												  	name = 'shortDescription';
 													id = 'shortDescription';
+													value = $(this).text();
 													$(this).html(
 															'<input type="text" class="form-control" value="'
-																	+ $(this)
-																			.text()
+																	+ value
 																	+ '" name="'+name+'" id="'+id+'"/>');
-												    break;
+													shortDescriptionMae = value;
+													break;
 												  case 4:
 												  	name = 'thumbnail';
 													id = 'thumbnail';
+													value = $(this).text();
 													$(this).html(
 															'<input type="text" class="form-control" value="'
-																	+ $(this)
-																			.text()
+																	+ value
 																	+ '" name="'+name+'" id="'+id+'"/>');
-												    break;
+													thumbnailMae = value;
+													break;
+												  case 5:
+													  $(this).children().removeAttr("disabled");
+													  categoryCodeMae = $(this).children().val();
+													  break;
 												  default:
 												}
 												count++;
@@ -262,7 +287,7 @@
 								    }
 								});
 							}
-							
+							$(this).parents("tr").find(".delete").toggle();
 							$(this).parents("tr").remove();
 							$(".add-new").removeAttr("disabled");
 						});
